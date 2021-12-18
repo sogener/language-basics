@@ -3,21 +3,25 @@ package main
 import "fmt"
 
 func main() {
-	x := 15
+	x := 1
+	y := 2
+	numberSwapper(&x, &y)
 
-	fmt.Println("значение x до изменения значения: ", x)
-	incrementNumber(&x)
-	fmt.Println("значение x после: ", x)
+	fmt.Println(x)
+	fmt.Println(y)
 
-	z := new(int)
-	incrementNumber(z)
-	fmt.Println("адрес памяти z, созданной с помощью new() -  ", z)
-	fmt.Println("значение z, созданной с помощью new() -  ", *z)
-
-	//	Пустой указатель, который вернёт nil
-	var p *int
-	fmt.Println(p)
 }
 func incrementNumber(number *int) {
 	*number += 1
+}
+func numberSwapper(firstNumber, secondNumber *int) {
+
+	// Default
+	holder := *firstNumber
+	*firstNumber = *secondNumber
+	*secondNumber = holder
+
+	// Go
+	*firstNumber, *secondNumber = *secondNumber, *firstNumber
+
 }
