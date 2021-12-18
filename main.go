@@ -1,34 +1,18 @@
 package main
 
-import (
-	"errors"
-	"fmt"
-)
-
-const pi = 3.1415
+import "fmt"
 
 func main() {
-	printCircleArea(1)
+	x := 15
+
+	fmt.Println("значение x до изменения значения: ", x)
+	incrementNumber(&x)
+	fmt.Println("значение x после: ", x)
+
+	//	Пустой указатель, который вернёт nil
+	var p *int
+	fmt.Println(p)
 }
-
-func printCircleArea(radius int) {
-	circleArea, err := calculateCircleArea(radius)
-
-	if err != nil {
-		fmt.Println(err.Error())
-		return
-	}
-
-	fmt.Printf("Радиус круга: %d см.\n", radius)
-	fmt.Println("Формула для расчета площади круга: A=πr2\n")
-
-	fmt.Printf("Площадь круга: %f32 см. кв.\n\n", circleArea)
-}
-
-func calculateCircleArea(radius int) (float32, error) {
-	if radius <= 0 {
-		return float32(0), errors.New("Радиус круга не может быть отрицательным!")
-	}
-
-	return float32(radius) * float32(radius) * pi, nil
+func incrementNumber(number *int) {
+	*number += 1
 }
