@@ -23,10 +23,14 @@ func main() {
 		fmt.Println(actions[i])
 	}
 
-	bankOptions[2] = "Купить пиво"
-	fmt.Println("---- После изменения bankOptions ----")
+	fmt.Println("---- После changeOptions ----")
+	changeOptions(actions)
 
 	for i := range actions {
-		fmt.Println(actions[i])
+		println(actions[i])
 	}
+}
+func changeOptions(actions []string) {
+	actions[0] = "Изменили первый элем1"
+	actions[1] = "Изменили 2"
 }
