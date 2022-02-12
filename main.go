@@ -3,30 +3,26 @@ package main
 import "fmt"
 
 func main() {
+	bankOptions := [4]string{
+		"купить хлеб",
+		"купить молоко",
+		"купить пиво",
+		"дописать третий модуль",
+	}
+
+	// Мы создали пустой срез. Когда он не ссылается ни на какой массив, его значение по умолчанию равно nil.
+	var actions []string
+	fmt.Println(actions == nil)
 
 	/*
-		Когда же мы выполнили функцию append(), то:
-		Новый элемент вышел за рамки длины массива
-		Создался новый массив, с длинною вдвое больше (4 -> 8)
-		Срез начал ссылаться на новый массив
-		Все значения из старого массива скопировались в новый + добавился еще один элемент
+		Далее мы присвоили ему срез нашего массива с 1 по 4 элемент.
+		Синтаксис [m:n] позволяет делать выборку элементов массива или среза от индекса m до n.
+		Пустые скобки [:] означают выборку всех элементов.
 	*/
+	actions = bankOptions[1:4]
+	fmt.Println(actions == nil)
 
-	var bankOptions = []string{
-		"Просмотр баланса",
-		"Удвоить баланс",
-		"Уменьшить баланс",
-		"Внести депозит",
+	for i := range actions {
+		fmt.Println(actions[i])
 	}
-	fmt.Printf("Длинна списка %d\n", len(bankOptions))
-	fmt.Printf("Емкость списка %d\n", cap(bankOptions))
-
-	bankOptions = append(bankOptions, "Забрать депозит")
-
-	fmt.Printf("Длинна списка %d\n", len(bankOptions))
-	fmt.Printf("Емкость списка %d\n", cap(bankOptions))
-
-	newBankOptions := append(bankOptions, "Забрать депозит")
-	fmt.Printf("Длинна списка %d\n", len(newBankOptions))
-	fmt.Printf("Емкость списка %d\n", cap(newBankOptions))
 }
