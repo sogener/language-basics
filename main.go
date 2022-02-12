@@ -4,15 +4,16 @@ import "fmt"
 
 func main() {
 	var arr [3]int
-	pArr := &arr
-	fillArray(pArr)
 
+	// Записываем данные в массив
+	arr = fillArray(arr)
 	fmt.Println(arr)
 
 }
-func fillArray(pArr *[3]int) {
-	for i := 0; i < len(pArr); i++ {
-		pArr[i] = i
+func fillArray(arr [3]int) [3]int {
+	for i := 0; i < len(arr); i++ {
+		arr[i] = i
 	}
-	fmt.Println("Fill array: ", pArr)
+
+	return arr
 }
