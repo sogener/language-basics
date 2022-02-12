@@ -3,17 +3,30 @@ package main
 import "fmt"
 
 func main() {
-	var arr [3]int
 
-	// Записываем данные в массив
-	arr = fillArray(arr)
-	fmt.Println(arr)
+	/*
+		Когда же мы выполнили функцию append(), то:
+		Новый элемент вышел за рамки длины массива
+		Создался новый массив, с длинною вдвое больше (4 -> 8)
+		Срез начал ссылаться на новый массив
+		Все значения из старого массива скопировались в новый + добавился еще один элемент
+	*/
 
-}
-func fillArray(arr [3]int) [3]int {
-	for i := 0; i < len(arr); i++ {
-		arr[i] = i
+	var bankOptions = []string{
+		"Просмотр баланса",
+		"Удвоить баланс",
+		"Уменьшить баланс",
+		"Внести депозит",
 	}
+	fmt.Printf("Длинна списка %d\n", len(bankOptions))
+	fmt.Printf("Емкость списка %d\n", cap(bankOptions))
 
-	return arr
+	bankOptions = append(bankOptions, "Забрать депозит")
+
+	fmt.Printf("Длинна списка %d\n", len(bankOptions))
+	fmt.Printf("Емкость списка %d\n", cap(bankOptions))
+
+	newBankOptions := append(bankOptions, "Забрать депозит")
+	fmt.Printf("Длинна списка %d\n", len(newBankOptions))
+	fmt.Printf("Емкость списка %d\n", cap(newBankOptions))
 }
