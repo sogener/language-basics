@@ -1,20 +1,25 @@
 package main
 
 func main() {
-	name := "Alex"
-	pName := &name
 
-	var emptyPointer *int
-	print(emptyPointer)
+	const currentMoney = 100
 
-	result := randomName(pName)
-	print(result)
-	print(*pName)
+	setDeposit(currentMoney, true)
 }
 
-func randomName(name *string) string {
-	newName := *name
-	newName += "Surname"
+func setDeposit(money int, totalHold bool) string {
+	if money < 100 {
+		return "You need at least 100$ to byu something"
+	}
 
-	return newName
+	if totalHold {
+		money := incrementValue(money)
+		println(money)
+	}
+
+	return "Your deposit still the same"
+}
+
+func incrementValue(value int) int {
+	return value * 2
 }
