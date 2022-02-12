@@ -1,25 +1,37 @@
 package main
 
+import (
+	"errors"
+	"fmt"
+)
+
 func main() {
 
-	const currentMoney = 100
+	const currentMoney = 101
 
 	setDeposit(currentMoney, true)
 }
 
-func setDeposit(money int, totalHold bool) string {
-	if money < 100 {
-		return "You need at least 100$ to byu something"
+func setDeposit(money int32, isHold bool) int32 {
+	money, err := incrementValue(money, isHold)
+
+	if err != nil {
+		fmt.Println(err.Error())
+		return 0
 	}
 
-	if totalHold {
-		money := incrementValue(money)
-		println(money)
-	}
-
-	return "Your deposit still the same"
+	fmt.Println(money)
+	return money
 }
 
-func incrementValue(value int) int {
-	return value * 2
+func incrementValue(value int32, isHold bool) (int32, error) {
+	if value < 100 {
+		return int32(0), errors.New("you need at least 100$ to byu something")
+	}
+
+	if !isHold {
+		return value, nil
+	}
+
+	return value * 2, nil
 }
