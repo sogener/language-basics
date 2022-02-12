@@ -1,27 +1,20 @@
 package main
 
-import "fmt"
-
 func main() {
-	x := 1
-	y := 2
-	numberSwapper(&x, &y)
+	name := "Alex"
+	pName := &name
 
-	fmt.Println(x)
-	fmt.Println(y)
+	var emptyPointer *int
+	print(emptyPointer)
 
+	result := randomName(pName)
+	print(result)
+	print(*pName)
 }
-func incrementNumber(number *int) {
-	*number += 1
-}
-func numberSwapper(firstNumber, secondNumber *int) {
 
-	// Default
-	holder := *firstNumber
-	*firstNumber = *secondNumber
-	*secondNumber = holder
+func randomName(name *string) string {
+	newName := *name
+	newName += "Surname"
 
-	// Go
-	*firstNumber, *secondNumber = *secondNumber, *firstNumber
-
+	return newName
 }
