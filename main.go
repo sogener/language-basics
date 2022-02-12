@@ -1,24 +1,18 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	const currentMoney = 101
+	var arr [3]int
+	pArr := &arr
+	fillArray(pArr)
 
-	var bankOptions = [3]string{
-		"Просмотреть баланс",
-		"Увеличить x2",
-		"Уменьшить x2",
+	fmt.Println(arr)
+
+}
+func fillArray(pArr *[3]int) {
+	for i := 0; i < len(pArr); i++ {
+		pArr[i] = i
 	}
-
-	var todoTest = [5]string{"Не обязательно заполнять весь массив"}
-
-	fmt.Printf("Кол-во элементов в массиве: %d\n", len(bankOptions))
-	fmt.Printf("Кол-во элементов в массиве: %d\n", len(todoTest))
-
-	for key, value := range bankOptions {
-		fmt.Printf("%d. %s\n", key, value)
-	}
+	fmt.Println("Fill array: ", pArr)
 }
