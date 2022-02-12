@@ -1,37 +1,24 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 )
 
 func main() {
-
 	const currentMoney = 101
 
-	setDeposit(currentMoney, true)
-}
-
-func setDeposit(money int32, isHold bool) int32 {
-	money, err := incrementValue(money, isHold)
-
-	if err != nil {
-		fmt.Println(err.Error())
-		return 0
+	var bankOptions = [3]string{
+		"Просмотреть баланс",
+		"Увеличить x2",
+		"Уменьшить x2",
 	}
 
-	fmt.Println(money)
-	return money
-}
+	var todoTest = [5]string{"Не обязательно заполнять весь массив"}
 
-func incrementValue(value int32, isHold bool) (int32, error) {
-	if value < 100 {
-		return int32(0), errors.New("you need at least 100$ to byu something")
+	fmt.Printf("Кол-во элементов в массиве: %d\n", len(bankOptions))
+	fmt.Printf("Кол-во элементов в массиве: %d\n", len(todoTest))
+
+	for key, value := range bankOptions {
+		fmt.Printf("%d. %s\n", key, value)
 	}
-
-	if !isHold {
-		return value, nil
-	}
-
-	return value * 2, nil
 }
