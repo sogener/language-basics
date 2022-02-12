@@ -3,21 +3,34 @@ package main
 import "fmt"
 
 func main() {
-	x := 15
+	bankOptions := [4]string{
+		"Пополнить",
+		"Просмотреть",
+		"Снять",
+		"Посмотреть %",
+	}
 
-	fmt.Println("значение x до изменения значения: ", x)
-	incrementNumber(&x)
-	fmt.Println("значение x после: ", x)
+	// Мы создали пустой срез. Когда он не ссылается ни на какой массив, его значение по умолчанию равно nil.
+	var actions []string
+	/*
+		Далее мы присвоили ему срез нашего массива с 1 по 4 элемент.
+		Синтаксис [m:n] позволяет делать выборку элементов массива или среза от индекса m до n.
+		Пустые скобки [:] означают выборку всех элементов.
+	*/
+	actions = bankOptions[0:4]
 
-	z := new(int)
-	incrementNumber(z)
-	fmt.Println("адрес памяти z, созданной с помощью new() -  ", z)
-	fmt.Println("значение z, созданной с помощью new() -  ", *z)
+	for i := range actions {
+		fmt.Println(actions[i])
+	}
 
-	//	Пустой указатель, который вернёт nil
-	var p *int
-	fmt.Println(p)
+	fmt.Println("---- После changeOptions ----")
+	changeOptions(actions)
+
+	for i := range actions {
+		println(actions[i])
+	}
 }
-func incrementNumber(number *int) {
-	*number += 1
+func changeOptions(actions []string) {
+	actions[0] = "Изменили первый элем1"
+	actions[1] = "Изменили 2"
 }
