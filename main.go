@@ -12,7 +12,7 @@ type employee struct {
 func main() {
 	firstEmployee := newEmployee("Вася", "М", 25, 1500)
 
-	fmt.Printf("%+v\n", firstEmployee)
+	fmt.Printf("%+v\n", firstEmployee.name)
 }
 
 func newEmployee(name, sex string, age, salary int) employee {
