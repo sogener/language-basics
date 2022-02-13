@@ -11,17 +11,12 @@ func main() {
 	users["Billy"] = 10
 	users["Alex"] = 20
 
-	fmt.Println(users)
+	_, exists := users["Billy_not_found"]
 
-	// Init map with function make()
-	var age = make(map[string]int)
-	age["test11"] = 100
-
-	fmt.Println(age)
-
-	// Maps like [key => value] arrays
-	for key, value := range users {
-		fmt.Println(key, value)
+	if !exists {
+		fmt.Println("Billy нет в списке")
+		return
 	}
 
+	fmt.Printf("Значение билли равно %d\n", users["Billy"])
 }
