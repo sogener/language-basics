@@ -11,12 +11,6 @@ func main() {
 	users["Billy"] = 10
 	users["Alex"] = 20
 
-	_, exists := users["Billy_not_found"]
-
-	if !exists {
-		fmt.Println("Billy нет в списке")
-		return
-	}
-
-	fmt.Printf("Значение билли равно %d\n", users["Billy"])
+	delete(users, "user2")
+	fmt.Println(users)
 }
