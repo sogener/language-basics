@@ -1,48 +1,44 @@
 package main
 
-import "errors"
+import "fmt"
 
 type programmer struct {
 	id        int
 	name      string
-	role      string
 	isWorking bool
 }
-
-type outSource interface {
+type dumbStorage struct{}
+type storage interface {
 	insert(p programmer) error
-	get(id int) (p programmer, err error)
+	get(id int) (programmer, error)
 	delete(id int) error
 }
 
-type memoryStorage struct {
-	data map[int]programmer
+func newDumbStorage() *dumbStorage {
+	return &dumbStorage{}
 }
 
-func newMemoryStorage() *memoryStorage {
-	return &memoryStorage{data: make(map[int]programmer)}
-}
-
-func (s *memoryStorage) insert(p programmer) error {
-	s.data[p.id] = p
+func (s dumbStorage) insert(p programmer) error {
+	fmt.Println("Вставка прошла успешно")
 	return nil
 }
 
-func (s *memoryStorage) get(id int) (p programmer, err error) {
-	p, exists := s.data[id]
-
-	if !exists {
-		return programmer{}, errors.New("programmer with current id does not exists")
-	}
-
+func (s dumbStorage) get(id int) (programmer, error) {
+	p := programmer{id: id}
 	return p, nil
 }
 
-func (s *memoryStorage) delete(id int) error {
-	delete(s.data, id)
+func (s dumbStorage) delete(id int) error {
+	fmt.Println("Удаление произошло")
 	return nil
 }
 
 func main() {
+	var s storage
+	fmt.Println("s: ", s)
+	fmt.Printf("type of s: %T\n", s)
 
+	s = newDumbStorage()
+	fmt.Println("s: ", s)
+	fmt.Printf("type of s: %T\n", s)
 }
