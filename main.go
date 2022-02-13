@@ -3,26 +3,23 @@ package main
 import "fmt"
 
 func main() {
-	type Employee struct {
+	type employee struct {
 		name   string
-		sex    string
+		sex    string // пол
 		age    int
-		salary int
+		salary int // зарплата
 	}
 
-	firstEmployee := Employee{
-		name:   "Vasya",
-		sex:    "Male",
-		age:    18,
-		salary: 1000,
-	}
-	secondEmployee := Employee{
-		name:   "Alex",
-		sex:    "Male",
-		age:    22,
-		salary: 555,
-	}
+	firstEmployee := newEmployee("Вася", "М", 25, 1500)
 
 	fmt.Printf("%+v\n", firstEmployee)
-	fmt.Printf("%+v\n", secondEmployee)
+}
+
+func newEmployee(name, sex string, age, salary int) employee {
+	return employee{
+		name:   name,
+		sex:    sex,
+		age:    age,
+		salary: salary,
+	}
 }
