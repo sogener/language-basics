@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type programmer struct {
 	id        int
@@ -8,10 +11,40 @@ type programmer struct {
 	isWorking bool
 }
 type dumbStorage struct{}
+
 type storage interface {
 	insert(p programmer) error
 	get(id int) (programmer, error)
 	delete(id int) error
+}
+
+type memoryStorage struct {
+	data map[int]programmer
+}
+
+func newMemoryStorage() *memoryStorage {
+	return &memoryStorage{
+		data: make(map[int]programmer),
+	}
+}
+
+func (s *memoryStorage) insert(e programmer) error {
+	s.data[e.id] = e
+	return nil
+}
+
+func (s *memoryStorage) get(id int) (programmer, error) {
+	e, exists := s.data[id]
+	if !exists {
+		return programmer{}, errors.New("programmer with such id doesn't exist")
+	}
+
+	return e, nil
+}
+
+func (s *memoryStorage) delete(id int) error {
+	delete(s.data, id)
+	return nil
 }
 
 func newDumbStorage() *dumbStorage {
@@ -33,12 +66,18 @@ func (s dumbStorage) delete(id int) error {
 	return nil
 }
 
-func main() {
-	var s storage
-	fmt.Println("s: ", s)
-	fmt.Printf("type of s: %T\n", s)
+func spawnEmployees(s storage) {
+	for i := 1; i <= 10; i++ {
+		s.insert(programmer{id: i})
+	}
+}
 
-	s = newDumbStorage()
-	fmt.Println("s: ", s)
-	fmt.Printf("type of s: %T\n", s)
+func main() {
+	ms := newMemoryStorage()
+	ds := newDumbStorage()
+
+	spawnEmployees(ms)
+	fmt.Println(ms.get(3))
+
+	spawnEmployees(ds)
 }
