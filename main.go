@@ -2,14 +2,14 @@ package main
 
 import "fmt"
 
-func main() {
-	type employee struct {
-		name   string
-		sex    string // пол
-		age    int
-		salary int // зарплата
-	}
+type employee struct {
+	name   string
+	sex    string // пол
+	age    int
+	salary int // зарплата
+}
 
+func main() {
 	firstEmployee := newEmployee("Вася", "М", 25, 1500)
 
 	fmt.Printf("%+v\n", firstEmployee)
