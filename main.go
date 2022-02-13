@@ -3,34 +3,25 @@ package main
 import "fmt"
 
 func main() {
-	bankOptions := [4]string{
-		"Пополнить",
-		"Просмотреть",
-		"Снять",
-		"Посмотреть %",
+	users := map[string]int{
+		"user1": 1,
+		"user2": 2,
 	}
 
-	// Мы создали пустой срез. Когда он не ссылается ни на какой массив, его значение по умолчанию равно nil.
-	var actions []string
-	/*
-		Далее мы присвоили ему срез нашего массива с 1 по 4 элемент.
-		Синтаксис [m:n] позволяет делать выборку элементов массива или среза от индекса m до n.
-		Пустые скобки [:] означают выборку всех элементов.
-	*/
-	actions = bankOptions[0:4]
+	users["Billy"] = 10
+	users["Alex"] = 20
 
-	for i := range actions {
-		fmt.Println(actions[i])
+	fmt.Println(users)
+
+	// Init map with function make()
+	var age = make(map[string]int)
+	age["test11"] = 100
+
+	fmt.Println(age)
+
+	// Maps like [key => value] arrays
+	for key, value := range users {
+		fmt.Println(key, value)
 	}
 
-	fmt.Println("---- После changeOptions ----")
-	changeOptions(actions)
-
-	for i := range actions {
-		println(actions[i])
-	}
-}
-func changeOptions(actions []string) {
-	actions[0] = "Изменили первый элем1"
-	actions[1] = "Изменили 2"
 }
