@@ -1,5 +1,5 @@
-module firstModule
+module github.com/sogener/language-basics
 
 go 1.16
 
-require github.com/zhashkevych/scheduler v1.0.0 // indirect
+require rsc.io/quote v1.5.2 // indirect
