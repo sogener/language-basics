@@ -1,7 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"context"
+	"fmt"
+	"github.com/zhashkevych/scheduler"
+	"time"
+)
 
 func main() {
-	fmt.Println("Знакомство с модулями")
+	s := scheduler.NewScheduler()
+
+	s.Add(context.Background(), func(ctx context.Context) {
+		fmt.Printf("Текущее время: %s\n", time.Now())
+	}, time.Second*1)
+
+	time.Sleep(time.Minute)
 }
